@@ -1,27 +1,21 @@
-# HomemadePokedex
+# Homemade Pokedex
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+A PWA made with Angular that pretends to be a basic pokedex with 8-bit styles, the idea is to make it look like a Game Boy.
 
-## Development server
+## Tech Stack
+- [Angular](https://angular.io/)
+- [NES.css](https://nostalgic-css.github.io/NES.css/)
+- [Netlify](https://www.netlify.com/)
+- [PokéAPI](https://pokeapi.co/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+There's a live demo in: https://homemadepokedex.netlify.com/
 
-## Code scaffolding
+Netlify builds automatically from `master` so your changes are a single pull request away from going live!
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Involved
+Read the [Contributing](./CONTRIBUTING.md) guide to find out about how you can build and contribute to this project.
 
-## Build
+## Credits
+Thanks to the creator of NES.css [(BcRikko)](https://github.com/BcRikko) and the entire team [(nostalgic-css)](https://github.com/nostalgic-css) 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Thanks to [alessandrojcm](https://github.com/alessandrojcm) for always helping me with my projects and teaching me everything I need
