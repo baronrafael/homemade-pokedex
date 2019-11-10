@@ -3,6 +3,8 @@
     <span>Loading</span>
 </div>
 
+<pokedex-paginator [rows]="10" [totalRecords]="200" (onPageChanged)="onPageChange($event)"></pokedex-paginator>
+
 <table *ngIf="pokemons" class="nes-table is-bordered is-centered transparent small">
     <thead>
         <tr>

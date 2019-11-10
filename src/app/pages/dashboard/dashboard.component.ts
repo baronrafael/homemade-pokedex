@@ -58,4 +58,8 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('pokemon', JSON.stringify(item));
     this.goToPkmnDetails();
   }
+
+  onPageChange(newPage: number) {
+    // TODO: Execute pagination.
+  }
 }
