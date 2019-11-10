@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PokeService } from 'src/app/core/services/poke.service';
 import { PokemonListQueryResponse } from '../../core/models/entities/pokemon-list-query.response';
 
@@ -8,13 +9,21 @@ import { PokemonListQueryResponse } from '../../core/models/entities/pokemon-lis
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private pokeService: PokeService) {}
+
+  constructor(
+    private router: Router,
+    private pokeService: PokeService
+    ) {}
 
   pokemons: PokemonListQueryResponse[];
   pokemonsPic: string[];
 
   ngOnInit() {
     this.getAllPkmns();
+  }
+
+  goToPkmnDetails(){
+    this.router.navigate(['/pages/pokemon-details']);
   }
 
   getAllPkmns() {
@@ -47,5 +56,6 @@ export class DashboardComponent implements OnInit {
 
   selectPkmn(item){
     console.log(item);
+    this.goToPkmnDetails();
   }
 }

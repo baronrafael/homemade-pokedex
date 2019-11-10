@@ -4,9 +4,10 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent],
+  declarations: [PagesComponent, DashboardComponent, PokemonDetailsComponent],
   imports: [CommonModule, SharedModule, PagesRoutingModule],
 })
 export class PagesModule {}
