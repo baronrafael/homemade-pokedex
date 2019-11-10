@@ -1,2 +1,9 @@
-<button (click)="goToDashboard()" class="is-small nes-btn">Go Back</button>
-<p class="capitalize">{{pokemon.name}}</p>
+<div class="navbar header width-100 text-left">
+    <button (click)="goToDashboard()" class="xx-small nes-btn go-back-btn">Go Back</button>
+</div>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div class="nes-container with-title is-centered poke-card">
+        <p class="title capitalize poke-card">{{pokemon.name}}</p>
+        <img width="100" src="{{pokemonPic}}" alt="">
+    </div>
+</div>
