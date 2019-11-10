@@ -5,10 +5,9 @@ import { PokeService } from 'src/app/core/services/poke.service';
 @Component({
   selector: 'app-pokemon-details',
   templateUrl: './pokemon-details.component.html',
-  styleUrls: ['./pokemon-details.component.scss']
+  styleUrls: ['./pokemon-details.component.scss'],
 })
 export class PokemonDetailsComponent implements OnInit {
-
   pokemon: any;
   pokemonPic: string;
   pokemonDetails: any;
@@ -19,11 +18,10 @@ export class PokemonDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(!localStorage.getItem('pokemon')){
+    if (!localStorage.getItem('pokemon')) {
       this.goToDashboard();
       return;
-    }
-    else{
+    } else {
       this.pokemon = JSON.parse(localStorage.getItem('pokemon'));
       this.getPkmnPic();
       console.log(this.pokemon);
@@ -31,7 +29,7 @@ export class PokemonDetailsComponent implements OnInit {
     }
   }
 
-  goToDashboard(){
+  goToDashboard() {
     this.router.navigate(['']);
   }
 

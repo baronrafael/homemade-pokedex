@@ -12,15 +12,14 @@ export class AppComponent {
   updateAvailable = false;
   constructor(private swUpdate: SwUpdate) {
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe(event => {
+      this.swUpdate.available.subscribe((event) => {
         console.log('New update available');
         this.updateAvailable = true;
       });
     }
   }
 
-  updateApp(){
+  updateApp() {
     window.location.reload();
   }
-
 }

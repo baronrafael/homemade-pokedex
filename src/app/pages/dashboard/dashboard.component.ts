@@ -9,11 +9,7 @@ import { PokemonListQueryResponse } from '../../core/models/entities/pokemon-lis
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
-  constructor(
-    private router: Router,
-    private pokeService: PokeService
-    ) {}
+  constructor(private router: Router, private pokeService: PokeService) {}
 
   pokemons: PokemonListQueryResponse[];
   pokemonsPic: string[];
@@ -22,7 +18,7 @@ export class DashboardComponent implements OnInit {
     this.getAllPkmns();
   }
 
-  goToPkmnDetails(){
+  goToPkmnDetails() {
     this.router.navigate(['/pages/pokemon-details']);
   }
 
@@ -37,24 +33,31 @@ export class DashboardComponent implements OnInit {
       },
     );
   }
-  getPokmnsPics(){
+  getPokmnsPics() {
     this.pokemonsPic = [];
-    for(let i = 0; i < this.pokemons.length; i++){
+    for (let i = 0; i < this.pokemons.length; i++) {
       //this.pokemonsPic.push('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ i +'.png');
-      if(i < 649){
-        if(this.pokemons[i].name == 'darmanitan-standard'){
+      if (i < 649) {
+        if (this.pokemons[i].name == 'darmanitan-standard') {
           this.pokemons[i].name = 'darmanitan-standard-mode';
         }
-        this.pokemonsPic.push('https://img.pokemondb.net/sprites/black-white/anim/normal/'+ this.pokemons[i].name +'.gif')
-      }
-      else{
-        let j = i+1;
-        this.pokemonsPic.push('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ j +'.png')
+        this.pokemonsPic.push(
+          'https://img.pokemondb.net/sprites/black-white/anim/normal/' +
+            this.pokemons[i].name +
+            '.gif',
+        );
+      } else {
+        let j = i + 1;
+        this.pokemonsPic.push(
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
+            j +
+            '.png',
+        );
       }
     }
   }
 
-  selectPkmn(item){
+  selectPkmn(item) {
     localStorage.setItem('pokemon', JSON.stringify(item));
     this.goToPkmnDetails();
   }
