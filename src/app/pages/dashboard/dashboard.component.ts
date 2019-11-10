@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit {
 
   selectPkmn(item){
     console.log(item);
+    localStorage.setItem('pokemon', JSON.stringify(item));
     this.goToPkmnDetails();
   }
 }

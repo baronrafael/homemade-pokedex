@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonDetailsComponent implements OnInit {
 
-  constructor() { }
+  pokemon: any;
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    if(!localStorage.getItem('pokemon')){
+      this.goToDashboard();
+      return;
+    }
+    else{
+      this.pokemon = JSON.parse(localStorage.getItem('pokemon'));
+      console.log(this.pokemon);
+    }
+  }
+
+  goToDashboard(){
+    this.router.navigate(['']);
   }
 
 }
