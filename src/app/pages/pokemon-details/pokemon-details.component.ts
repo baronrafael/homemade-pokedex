@@ -11,6 +11,7 @@ export class PokemonDetailsComponent implements OnInit {
 
   pokemon: any;
   pokemonPic: string;
+  pokemonDetails: any;
 
   constructor(
     private router: Router,
@@ -37,7 +38,9 @@ export class PokemonDetailsComponent implements OnInit {
   getPokemon(){
     this.pokeService.getPokemon(this.pokemon.name).subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
+        this.pokemonDetails = res;
+        console.log(this.pokemonDetails);
       },
       (err) => {
         console.log(err);

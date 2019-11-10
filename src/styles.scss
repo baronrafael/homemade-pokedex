@@ -51,6 +51,9 @@ html { height: 100%; box-sizing: border-box; margin: 0; }
 .width-100{
     width: 100%;
 }
+.w-auto{
+    width: auto;
+}
 
 .height-inherit{
     height: inherit;
@@ -58,4 +61,12 @@ html { height: 100%; box-sizing: border-box; margin: 0; }
 
 .capitalize{
     text-transform: capitalize;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.p-0{
+    padding: 0 !important;
 }
