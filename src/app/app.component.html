@@ -1,10 +1,14 @@
-<section *ngIf="updateAvailable">
+<section *ngIf="true">
     <button type="button" class="m-0 width-100 nes-btn" onclick="document.getElementById('dialog-default').showModal();">
         App update available
     </button>
     <dialog class="nes-dialog" id="dialog-default">
         <form method="dialog">
-            <p class="title text-center"><i class="nes-pokeball"></i> Update Available <i class="nes-pokeball"></i></p>
+            <div class="dialog-menu">
+                <img width="50" src="assets/img/spinningpokeball.gif" alt="">
+                <p class="title text-center mt-16">Update Available</p>
+                <img width="50" src="assets/img/spinningpokeball.gif" alt="">
+            </div>
             <p class="text-center">There is a new version of the app. Do you want to get the update?</p>
             <menu class="dialog-menu">
                 <button class="is-small nes-btn is-error">Cancel</button>
