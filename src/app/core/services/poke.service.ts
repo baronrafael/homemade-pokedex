@@ -13,7 +13,7 @@ export class PokeService {
   private readonly getAllpkmnsUrl;
 
   constructor(private http: ApiService) {
-    this.getAllpkmnsUrl = 'pokemon?offset=0&limit=964';
+    this.getAllpkmnsUrl = 'pokemon?offset=0&limit=807';
   }
 
   getAllPkmns() {
