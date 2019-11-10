@@ -4,11 +4,25 @@
 <div fxLayout="column" fxLayoutAlign="center center">
     <div class="nes-container with-title is-centered poke-card">
         <p class="title capitalize poke-card">{{pokemon.name}}</p>
+        <p *ngIf="pokemonDetails">#{{pokemonDetails.id}}</p>
         <img width="100" src="{{pokemonPic}}" alt="">
         <div *ngIf="pokemonDetails" class="mt-10" fxLayout="row" fxLayoutAlign="center center">
-            <div class="nes-container poke-card is-rounded w-auto p-0 capitalize x-small" *ngFor="let types of pokemonDetails.types;let i=index">
+            <div class="nes-container poke-card type-card is-rounded w-auto p-0 capitalize x-small" *ngFor="let types of pokemonDetails.types;let i=index">
                 {{types.type.name}}
             </div>
         </div>
+        <div *ngIf="pokemonDetails" class="lists mt-10">
+            <ul class="nes-list is-disc x-small text-left p-0">
+                <li>Height: {{pokemonDetails.height/10}}m</li>
+                <li>Weight: {{pokemonDetails.weight/10}}kg</li>
+            </ul>
+        </div>
+        <div *ngIf="pokemonDetails" class="mt-10">
+            <div *ngFor="let stats of pokemonDetails.stats;let i=index" class="xx-small text-right" fxLayout="row" fxLayoutAlign="end center">
+                <span class="m-inherit">{{manageStatName(stats.stat.name)}}</span>
+                <span class="m-auto">{{stats.base_stat}}</span>    
+                <progress class="nes-progress stat-progress" value="{{stats.base_stat}}" max="125"></progress>
+            </div>
+        </div>        
     </div>
 </div>

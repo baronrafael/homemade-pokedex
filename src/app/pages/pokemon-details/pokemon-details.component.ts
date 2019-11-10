@@ -52,4 +52,25 @@ export class PokemonDetailsComponent implements OnInit {
     this.pokemonPic = 'https://img.pokemondb.net/sprites/black-white/anim/normal/'+ this.pokemon.name +'.gif'
   }
 
+  manageStatName(stat: string){
+    if(stat == 'speed'){
+      return 'SPD';
+    }
+    else if(stat == 'special-defense'){
+      return 'SP DEF';
+    }
+    else if(stat == 'special-attack'){
+      return 'SP ATK';
+    }
+    else if(stat == 'defense'){
+      return 'DEF';
+    }
+    else if(stat == 'attack'){
+      return 'ATK';
+    }
+    else if(stat == 'hp'){
+      return 'HP';
+    }
+  }
+
 }
