@@ -5,5 +5,10 @@
     <div class="nes-container with-title is-centered poke-card">
         <p class="title capitalize poke-card">{{pokemon.name}}</p>
         <img width="100" src="{{pokemonPic}}" alt="">
+        <div *ngIf="pokemonDetails" class="mt-10" fxLayout="row" fxLayoutAlign="center center">
+            <div class="nes-container poke-card is-rounded w-auto p-0 capitalize x-small" *ngFor="let types of pokemonDetails.types;let i=index">
+                {{types.type.name}}
+            </div>
+        </div>
     </div>
 </div>
