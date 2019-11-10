@@ -18,12 +18,22 @@ export class PokeService {
 
   getAllPkmns() {
     return this.http
-      .get<ListQueryResponse<PokemonListQueryResponse>>(this.getAllpkmnsUrl)
-      .pipe(
-        map((resp) => {
-          return resp.results;
-        }),
-        cacheResult(),
-      );
+    .get<ListQueryResponse<PokemonListQueryResponse>>(this.getAllpkmnsUrl)
+    .pipe(
+      map((resp) => {
+        return resp.results;
+      }),
+       cacheResult(),
+    );
   }
+
+  getPokemon(pokename: string){
+    return this.http.get('pokemon/'+pokename).pipe(
+      map((resp) => {
+        return resp;
+      }),
+       cacheResult(),
+    );
+  }
+
 }
