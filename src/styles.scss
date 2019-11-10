@@ -46,6 +46,10 @@ html { height: 100%; box-sizing: border-box; margin: 0; }
     width: 100%;
 }
 
+.height-inherit{
+    height: inherit;
+}
+
 .capitalize{
     text-transform: capitalize;
 }
