@@ -25,13 +25,12 @@ export class PokeService {
     );
   }
 
-  getPokemon(pokename: string){
-    return this.http.get('pokemon/'+pokename).pipe(
+  getPokemon(pokename: string) {
+    return this.http.get('pokemon/' + pokename).pipe(
       map((resp) => {
         return resp;
       }),
-       cacheResult(),
+      cacheResult(),
     );
   }
-
 }

@@ -12,10 +12,7 @@ export class PokemonDetailsComponent implements OnInit {
   pokemonPic: string;
   pokemonDetails: any;
 
-  constructor(
-    private router: Router,
-    private pokeService: PokeService
-  ) { }
+  constructor(private router: Router, private pokeService: PokeService) {}
 
   ngOnInit() {
     if (!localStorage.getItem('pokemon')) {
@@ -33,7 +30,7 @@ export class PokemonDetailsComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  getPokemon(){
+  getPokemon() {
     this.pokeService.getPokemon(this.pokemon.name).subscribe(
       (res) => {
         //console.log(res);
@@ -46,29 +43,26 @@ export class PokemonDetailsComponent implements OnInit {
     );
   }
 
-  getPkmnPic(){
-    this.pokemonPic = 'https://img.pokemondb.net/sprites/black-white/anim/normal/'+ this.pokemon.name +'.gif'
+  getPkmnPic() {
+    this.pokemonPic =
+      'https://img.pokemondb.net/sprites/black-white/anim/normal/' +
+      this.pokemon.name +
+      '.gif';
   }
 
-  manageStatName(stat: string){
-    if(stat == 'speed'){
+  manageStatName(stat: string) {
+    if (stat == 'speed') {
       return 'SPD';
-    }
-    else if(stat == 'special-defense'){
+    } else if (stat == 'special-defense') {
       return 'SP DEF';
-    }
-    else if(stat == 'special-attack'){
+    } else if (stat == 'special-attack') {
       return 'SP ATK';
-    }
-    else if(stat == 'defense'){
+    } else if (stat == 'defense') {
       return 'DEF';
-    }
-    else if(stat == 'attack'){
+    } else if (stat == 'attack') {
       return 'ATK';
-    }
-    else if(stat == 'hp'){
+    } else if (stat == 'hp') {
       return 'HP';
     }
   }
-
 }
