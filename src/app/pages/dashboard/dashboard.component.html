@@ -4,12 +4,12 @@
     (onPageChanged)="onPageChange($event)">
 </pokedex-paginator>
 
-<div *ngIf="pokemons.length == 0" fxLayout="column">
+<div *ngIf="pokemons && pokemons.length == 0" fxLayout="column">
     <img width="250" height="250" src="assets/img/loadingpokeball.gif" alt="">
     <span>Loading</span>
 </div>
 
-<table *ngIf="pokemons.length != 0" class="nes-table is-bordered is-centered transparent small">
+<table *ngIf="pokemons && pokemons.length != 0" class="nes-table is-bordered is-centered transparent small">
     <thead>
         <tr>
             <th>POKEMON</th>
@@ -31,3 +31,10 @@
         </tr>
     </tbody>
 </table>
+
+<pokedex-paginator 
+    [rows]="pokemonSizePage" 
+    [totalRecords]="totalPokemons" 
+    [preselectedPage]="pokemonPage"
+    (onPageChanged)="onPageChange($event)">
+</pokedex-paginator>

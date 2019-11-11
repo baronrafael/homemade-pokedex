@@ -8,6 +8,7 @@ import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
 export class PaginatorComponent implements OnInit {
   @Input() rows: number;
   @Input() totalRecords: number;
+  @Input() preselectedPage: number = 1;
 
   @Output() onPageChanged: EventEmitter<number>;
 
@@ -20,7 +21,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedPage = 1;
+    this.selectedPage = this.preselectedPage;
     this.totalPages = this.totalRecords / this.rows;
     if (this.totalRecords % this.rows != 0) {
       this.totalPages += 1;
