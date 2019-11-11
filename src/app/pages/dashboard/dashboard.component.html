@@ -1,6 +1,7 @@
 <pokedex-paginator 
     [rows]="pokemonSizePage" 
     [totalRecords]="totalPokemons" 
+    [preselectedPage]="pokemonPage"
     (onPageChanged)="onPageChange($event)">
 </pokedex-paginator>
 

@@ -1,11 +1,19 @@
-import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  OnInit,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'pokedex-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, OnChanges {
   @Input() rows: number;
   @Input() totalRecords: number;
   @Input() preselectedPage: number = 1;
@@ -18,6 +26,7 @@ export class PaginatorComponent implements OnInit {
 
   constructor() {
     this.onPageChanged = new EventEmitter<number>();
+    this.renderedPages = [];
   }
 
   ngOnInit() {
@@ -31,6 +40,21 @@ export class PaginatorComponent implements OnInit {
       Array(maximumNumberOfPages),
       (_, x) => x + 1,
     );
+  }
+
+  // This is done in order to sync multiple instances
+  // of the same paginator within the same parent component,
+  // so that if multiple paginators use
+  // the same preselectedPage variable in the parent,
+  // they're gonna sync properly. Otherwise, they will be independent
+  // from one another.
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      if (propName === 'preselectedPage') {
+        this.selectedPage = changes[propName].currentValue;
+        this.updateRenderedPages();
+      }
+    }
   }
 
   updateRenderedPages() {
