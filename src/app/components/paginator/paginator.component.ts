@@ -20,9 +20,11 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
   @Output() onPageChanged: EventEmitter<number>;
 
-  private totalPages: number;
-  private selectedPage: number;
-  private renderedPages: number[];
+  totalPages: number;
+  selectedPage: number;
+  renderedPages: number[];
+
+  readonly MAX_PAGES_TO_DISPLAY: number = 6;
 
   constructor() {
     this.onPageChanged = new EventEmitter<number>();
@@ -31,11 +33,11 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.selectedPage = this.preselectedPage;
-    this.totalPages = this.totalRecords / this.rows;
-    if (this.totalRecords % this.rows != 0) {
-      this.totalPages += 1;
-    }
-    const maximumNumberOfPages = this.totalPages < 6 ? this.totalPages : 6;
+    this.totalPages = Math.ceil(this.totalRecords / this.rows);
+    const maximumNumberOfPages =
+      this.totalPages < this.MAX_PAGES_TO_DISPLAY
+        ? this.totalPages
+        : this.MAX_PAGES_TO_DISPLAY;
     this.renderedPages = Array.from(
       Array(maximumNumberOfPages),
       (_, x) => x + 1,

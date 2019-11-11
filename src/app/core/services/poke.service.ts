@@ -10,20 +10,19 @@ import { cacheResult } from '../operators/rx/cache-result';
   providedIn: 'root',
 })
 export class PokeService {
-  private readonly getAllpkmnsUrl;
-
   constructor(private http: ApiService) {}
 
+  getAllPokemonsUrl = (offset, size) =>
+    `pokemon?offset=${offset}&limit=${size}`;
+
   getAllPkmns(offset: number, size: number) {
-    const getAllPokemonsUrl = `pokemon?offset=${offset}&limit=${size}`;
-    return this.http
-      .get<ListQueryResponse<PokemonListQueryResponse>>(getAllPokemonsUrl)
-      .pipe(
-        map((resp) => {
-          return resp;
-        }),
-        cacheResult(),
-      );
+    const url = this.getAllPokemonsUrl(offset, size);
+    return this.http.get<ListQueryResponse<PokemonListQueryResponse>>(url).pipe(
+      map((resp) => {
+        return resp;
+      }),
+      cacheResult(),
+    );
   }
 
   getPokemon(pokename: string){
