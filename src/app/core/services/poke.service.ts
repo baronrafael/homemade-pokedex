@@ -12,19 +12,18 @@ import { cacheResult } from '../operators/rx/cache-result';
 export class PokeService {
   private readonly getAllpkmnsUrl;
 
-  constructor(private http: ApiService) {
-    this.getAllpkmnsUrl = 'pokemon?offset=0&limit=807';
-  }
+  constructor(private http: ApiService) {}
 
-  getAllPkmns() {
+  getAllPkmns(offset: number, size: number) {
+    const getAllPokemonsUrl = `pokemon?offset=${offset}&limit=${size}`;
     return this.http
-    .get<ListQueryResponse<PokemonListQueryResponse>>(this.getAllpkmnsUrl)
-    .pipe(
-      map((resp) => {
-        return resp.results;
-      }),
-       cacheResult(),
-    );
+      .get<ListQueryResponse<PokemonListQueryResponse>>(getAllPokemonsUrl)
+      .pipe(
+        map((resp) => {
+          return resp;
+        }),
+        cacheResult(),
+      );
   }
 
   getPokemon(pokename: string){

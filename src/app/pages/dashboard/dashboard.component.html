@@ -1,11 +1,15 @@
-<div *ngIf="!pokemons" fxLayout="column">
+<pokedex-paginator 
+    [rows]="pokemonSizePage" 
+    [totalRecords]="totalPokemons" 
+    (onPageChanged)="onPageChange($event)">
+</pokedex-paginator>
+
+<div *ngIf="pokemons.length == 0" fxLayout="column">
     <img width="250" height="250" src="assets/img/loadingpokeball.gif" alt="">
     <span>Loading</span>
 </div>
 
-<pokedex-paginator [rows]="10" [totalRecords]="200" (onPageChanged)="onPageChange($event)"></pokedex-paginator>
-
-<table *ngIf="pokemons" class="nes-table is-bordered is-centered transparent small">
+<table *ngIf="pokemons.length != 0" class="nes-table is-bordered is-centered transparent small">
     <thead>
         <tr>
             <th>POKEMON</th>
@@ -17,7 +21,7 @@
                 <!--<span class="poke-name">#{{i+1}}</span>-->
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                     <div fxLayout="column" fxLayoutAlign="center center">
-                        <span class="poke-name">#{{i+1}}</span>
+                        <span class="poke-name">#{{getPokeId(poke.url)}}</span>
                         <span class="poke-name">{{poke.name}}</span>
                     </div>
                     <img width="90" src="{{pokemonsPic[i]}}" alt="">

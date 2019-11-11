@@ -63,6 +63,9 @@ export class PaginatorComponent implements OnInit {
   }
 
   updateActualPage(page) {
+    if (page <= 0 || page > this.totalPages) {
+      return;
+    }
     this.selectedPage = page;
     this.onPageChanged.emit(this.selectedPage);
     this.updateRenderedPages();
