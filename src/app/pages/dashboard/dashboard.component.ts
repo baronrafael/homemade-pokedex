@@ -9,27 +9,32 @@ import { PokemonListQueryResponse } from '../../core/models/entities/pokemon-lis
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
-  constructor(
-    private router: Router,
-    private pokeService: PokeService
-    ) {}
-
   pokemons: PokemonListQueryResponse[];
   pokemonsPic: string[];
+
+  pokemonPage: number;
+  pokemonPageSize: number;
+  totalPokemons: number;
+
+  constructor(private router: Router, private pokeService: PokeService) {
+    this.pokemonPage = 1;
+    this.pokemonPageSize = 10;
+  }
 
   ngOnInit() {
     this.getAllPkmns();
   }
 
-  goToPkmnDetails(){
+  goToPkmnDetails() {
     this.router.navigate(['/pages/pokemon-details']);
   }
 
   getAllPkmns() {
-    this.pokeService.getAllPkmns().subscribe(
+    const offset = (this.pokemonPage - 1) * this.pokemonPageSize;
+    this.pokeService.getAllPkmns(offset, this.pokemonPageSize).subscribe(
       (res) => {
-        this.pokemons = res;
+        this.pokemons = res['results'];
+        this.totalPokemons = res['count'];
         this.getPokmnsPics();
       },
       (err) => {
@@ -37,25 +42,46 @@ export class DashboardComponent implements OnInit {
       },
     );
   }
-  getPokmnsPics(){
+  getPokmnsPics() {
     this.pokemonsPic = [];
-    for(let i = 0; i < this.pokemons.length; i++){
+    for (let i = 0; i < this.pokemons.length; i++) {
       //this.pokemonsPic.push('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ i +'.png');
-      if(i < 649){
-        if(this.pokemons[i].name == 'darmanitan-standard'){
+      if (i < 649) {
+        if (this.pokemons[i].name == 'darmanitan-standard') {
           this.pokemons[i].name = 'darmanitan-standard-mode';
         }
-        this.pokemonsPic.push('https://img.pokemondb.net/sprites/black-white/anim/normal/'+ this.pokemons[i].name +'.gif')
-      }
-      else{
-        let j = i+1;
-        this.pokemonsPic.push('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ j +'.png')
+        this.pokemonsPic.push(
+          'https://img.pokemondb.net/sprites/black-white/anim/normal/' +
+            this.pokemons[i].name +
+            '.gif',
+        );
+      } else {
+        let j = i + 1;
+        this.pokemonsPic.push(
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
+            j +
+            '.png',
+        );
       }
     }
   }
 
-  selectPkmn(item){
+  selectPkmn(item) {
     localStorage.setItem('pokemon', JSON.stringify(item));
     this.goToPkmnDetails();
+  }
+
+  onPageChange(newPage: number) {
+    this.pokemonPage = newPage;
+    this.pokemons = [];
+    this.getAllPkmns();
+  }
+
+  getPokeId(url: string): string {
+    const pokemonUrlSections = url.split('/');
+    // We substract 2 instead of 1 because the url ends with '/'
+    // So the last element (-1) happens to be an empty string.
+    const pokemonId = pokemonUrlSections[pokemonUrlSections.length - 2];
+    return pokemonId;
   }
 }

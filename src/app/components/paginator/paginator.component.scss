@@ -1,0 +1,11 @@
+.page {
+    font-size: 12px;
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+.is-active-page {
+    font-size: 15px;
+    font-weight: bold;
+}

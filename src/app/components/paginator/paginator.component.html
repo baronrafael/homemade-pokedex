@@ -1,0 +1,12 @@
+<section>
+    <span class="page" (click)="updateActualPage(selectedPage - 1)">&laquo;</span>
+    <span 
+        class="page" 
+        *ngFor="let page of renderedPages" 
+        (click)="updateActualPage(page)"
+        [ngClass]="{'is-active-page': page === selectedPage}"
+    >
+        {{ page }}
+    </span>
+    <span class="page" (click)="updateActualPage(selectedPage + 1)">&raquo;</span>
+</section>

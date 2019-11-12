@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'pokemon-details', component: PokemonDetailsComponent }
+      { path: 'pokemon-details', component: PokemonDetailsComponent },
     ],
   },
 ];
