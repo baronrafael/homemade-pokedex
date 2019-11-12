@@ -12,9 +12,9 @@ export class DashboardComponent implements OnInit {
   pokemons: PokemonListQueryResponse[];
   pokemonsPic: string[];
 
-  private pokemonPage: number;
-  private pokemonPageSize: number;
-  private totalPokemons: number;
+  pokemonPage: number;
+  pokemonPageSize: number;
+  totalPokemons: number;
 
   constructor(private router: Router, private pokeService: PokeService) {
     this.pokemonPage = 1;

@@ -75,6 +75,10 @@ export class PaginatorComponent implements OnInit, OnChanges {
     // added or subtracted to the elements of the array
     // exceeds the valid range of pages,
     // we need to recompute it using its own value as an offset.
+    // The reason for this is because if, for instance, the new selected page is 2 on index 0 (i.e. [2, 3, 4, 5, 6, 7]),
+    // rotation will hold a value of -2, and if we substract that to all the elements, the first element will become 0.
+    // And since that's not a valid page, we do a computation to make it -1. So that, the first element will be 1.
+    // Same thing occurs for the last index. In essence, we do this to re-compute a valid rotation if necessary.
     if (this.renderedPages[0] + rotation <= 0) {
       rotation -= this.renderedPages[0] + rotation - 1;
     } else if (
