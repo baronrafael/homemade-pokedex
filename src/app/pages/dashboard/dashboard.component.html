@@ -3,25 +3,30 @@
     <span>Loading</span>
 </div>
 
-<table *ngIf="pokemons" class="nes-table is-bordered is-centered transparent small">
-    <thead>
-        <tr>
-            <th>POKEMON</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let poke of pokemons;let i=index" (click)="selectPkmn(poke)">
-            <td>
-                <!--<span class="poke-name">#{{i+1}}</span>-->
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div fxLayout="column" fxLayoutAlign="center center">
-                        <span class="poke-name">#{{i+1}}</span>
-                        <span class="poke-name">{{poke.name}}</span>
+<div *ngIf="pokemons">
+    <div class="nes-field">
+        <input [(ngModel)]="listFilter" type="text" id="filterInput" class="nes-input" placeholder="Search...">
+    </div>
+    <table class="nes-table is-bordered is-centered transparent small width-100 max-w-418">
+        <thead>
+            <tr>
+                <th>POKEMON</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let poke of filteredPokemons" (click)="selectPkmn(poke)">
+                <td>
+                    <!--<span class="poke-name">#{{i+1}}</span>-->
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" fxLayoutAlign="center center">
+                            <span class="poke-name">#{{poke.number}}</span>
+                            <span class="poke-name">{{poke.name}}</span>
+                        </div>
+                        <img width="90" src="{{poke.sprite}}" alt="">
                     </div>
-                    <img width="90" src="{{pokemonsPic[i]}}" alt="">
-                </div>
-            </td>
-        <tr>
-        </tr>
-    </tbody>
-</table>
+                </td>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+</div>

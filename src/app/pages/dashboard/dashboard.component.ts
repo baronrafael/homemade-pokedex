@@ -13,10 +13,29 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private pokeService: PokeService
-    ) {}
+  )
+  { }
 
   pokemons: PokemonListQueryResponse[];
-  pokemonsPic: string[];
+  filteredPokemons: any[] = [];
+
+  _listFilter = '';
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredPokemons = this.listFilter ? this.doFilter(this.listFilter) : this.pokemons;
+  }
+
+  doFilter(filterBy: string): any[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.pokemons.filter((pokemon: any) =>
+    pokemon.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+  
 
   ngOnInit() {
     this.getAllPkmns();
@@ -31,6 +50,8 @@ export class DashboardComponent implements OnInit {
       (res) => {
         this.pokemons = res;
         this.getPokmnsPics();
+        this.filteredPokemons = this.pokemons;
+        this.listFilter = '';
       },
       (err) => {
         console.log(err);
@@ -38,18 +59,18 @@ export class DashboardComponent implements OnInit {
     );
   }
   getPokmnsPics(){
-    this.pokemonsPic = [];
     for(let i = 0; i < this.pokemons.length; i++){
       //this.pokemonsPic.push('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ i +'.png');
+      this.pokemons[i].number = i + 1;
       if(i < 649){
         if(this.pokemons[i].name == 'darmanitan-standard'){
           this.pokemons[i].name = 'darmanitan-standard-mode';
         }
-        this.pokemonsPic.push('https://img.pokemondb.net/sprites/black-white/anim/normal/'+ this.pokemons[i].name +'.gif')
+        this.pokemons[i].sprite = 'https://img.pokemondb.net/sprites/black-white/anim/normal/'+ this.pokemons[i].name +'.gif';
       }
       else{
         let j = i+1;
-        this.pokemonsPic.push('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ j +'.png')
+        this.pokemons[i].sprite = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+ j +'.png';
       }
     }
   }
